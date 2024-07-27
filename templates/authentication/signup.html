@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    
+    <div class="form-container">
+        <h1>Sign Up</h1>
+        <form action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Create a username (only letters and numbers)" required>
+            <br>
+
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="Enter Your First Name" required>
+            <br>
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Enter Your Last Name" required>
+            <br>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+            <br>
+
+            <label for="pass1">Password</label>
+            <input type="password" id="pass1" name="pass1" placeholder="Create Password" required>
+            <br>
+
+            <label for="pass2">Confirm Your Password</label>
+            <input type="password" id="pass2" name="pass2" placeholder="Confirm Your Password" required>
+            <br>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script src="" async defer></script>
+</body>
+</html>
+
+
+<style>
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.form-container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333333;
+    font-size: 24px;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    text-align: left;
+    color: #333333;
+    font-weight: bold;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color:#e74c3c;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    
+}
+
+button:hover {
+    background-color:  #c0392b;
+    transform: scale(1.05);
+}
+
+input:focus, button:focus {
+    outline: none;
+    border-color: #e74c3c;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+
+</style>

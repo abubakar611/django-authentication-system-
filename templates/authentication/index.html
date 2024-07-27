@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Display Messages -->
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        <h1>Welcome to My Platform</h1>
+
+        {% if user.is_authenticated %}
+        <h3>Hello {{ fname }}</h3>
+        <h4>You're successfully logged in</h4>
+        <div class="button-group">
+            <a href="{% url 'signout' %}" class="btn">Sign Out</a>
+        </div>
+        {% else %}
+        <div class="button-group">
+            <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+            <a href="{% url 'signin' %}" class="btn">Sign In</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #8e44ad, #3498db);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+        padding: 60px;
+        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        width: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+        font-size: 32px;
+        color: #2c3e50;
+        margin-bottom: 50px;
+        font-weight: 600;
+    }
+
+    h3, h4 {
+        color: #2c3e50;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 15px 40px;
+        font-size: 18px;
+        color: white;
+        background-color: #e74c3c;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #c0392b;
+        transform: scale(1.05);
+    }
+
+    .btn:active {
+        background-color: #e74c3c;
+    }
+</style>
